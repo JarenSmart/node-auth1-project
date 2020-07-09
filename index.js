@@ -9,13 +9,13 @@ const port = process.env.PORT || 6666;
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
-server.use(
-  session({
-    resave: false, // avoids recreating sessions that have not changed
-    saveUninitialized: false, // comply with GDPR laws
-    secret: "keep it secret, keep it safe",
-  })
-);
+// server.use(
+//   session({
+//     resave: false, // avoids recreating sessions that have not changed
+//     saveUninitialized: false, // comply with GDPR laws
+//     secret: "keep it secret, keep it safe",
+//   })
+// );
 
 server.use(usersRouter);
 
