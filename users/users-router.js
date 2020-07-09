@@ -56,6 +56,10 @@ router.post("/api/login", async (req, res, next) => {
       });
     }
 
+    // generate a new session for specific user
+    // this will also send a session ID back
+    req.session.user = user;
+
     res.json({
       message: `Welcome ${user.username}!`,
     });
