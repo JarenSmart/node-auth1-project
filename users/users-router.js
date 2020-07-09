@@ -13,7 +13,7 @@ router.get("/api/users", restrict(), async (req, res, next) => {
   }
 });
 
-router.post("/api/users", async (req, res, next) => {
+router.post("/api/register", async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const user = await Users.findBy({ username }).first();

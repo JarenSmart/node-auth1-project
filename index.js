@@ -2,6 +2,8 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const session = require("express-session");
+const KnexSessionStore = require("connect-session-knex")(session);
+const db = require("./database/config");
 const usersRouter = require("./users/users-router");
 
 const server = express();
@@ -15,6 +17,10 @@ server.use(
     resave: false, // avoids recreating sessions that have not changed
     saveUninitialized: false, // comply with GDPR laws
     secret: "keep it secret, keep it safe",
+    store: new KnexSessionStore({
+      knex: db, // configured instance of Knex, or the 'live database connection'
+      createtable: true, // This will create a new table if one doesn't exist to store the sessions
+    }),
   })
 );
 
